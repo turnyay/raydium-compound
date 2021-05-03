@@ -27,14 +27,14 @@ Current config examples are for OXY-RAY and MEDIA-USDC, but can modify env for o
 
 # Instructions (for OXYRAY or MEDIAUSDC pools)
 
-1. Copy the example env file and remove '.example'
+## 1. Copy the example env file and remove '.example'
 ```
 cp .env.oxyray.example .env.oxyray
 ```
-2. Fill in your 12 or 24 word seed in COMPOUND_ACCOUNT_SEED with correct derivation path
+## 2. Fill in your 12 or 24 word seed in COMPOUND_ACCOUNT_SEED with correct derivation path
 - (if your address printed is not correct, try another path based on .env comments)
 
-3. Fill in missing 4 accounts in the .env.<pool>
+## 3. Fill in missing 4 accounts in the .env.<pool>
 - Click "Harvest" with sollet, when the popup appears, copy and paste accounts by #:
 - This is manual for now - hoping to automate soon
 ```
@@ -44,12 +44,12 @@ USER_PC_TOKEN_ACCOUNT - Account #7
 USER_COIN_TOKEN_ACCOUNT - Account #11
 ```
 
-4. Install packages
+## 4. Install packages
 ```
 npm install
 ```
 
-5. Run compound script
+## 5. Run compound script
 ```
 npm run oxy-ray
 ```
