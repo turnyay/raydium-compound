@@ -1,0 +1,29 @@
+{
+  "name": "raydium-compound",
+  "version": "0.0.1",
+  "description": "Script to Compound Raydium Fusion Pools",
+  "main": "compound.js",
+  "scripts": {
+    "oxy-ray": "cp ./.env.oxyray .env && node --experimental-modules --es-module-specifier-resolution=node src/compound.js",
+    "media-usdc": "cp ./.env.mediausdc .env && node --experimental-modules --es-module-specifier-resolution=node src/compound.js"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@project-serum/serum": "^0.13.33",
+    "@solana/spl-token": "0.1.3",
+    "@solana/web3.js": "1.4.0",
+    "bignumber.js": "^9.0.1",
+    "bip32": "^2.0.5",
+    "bip39": "^3.0.3",
+    "bn.js": "^5.1.3",
+    "dotenv": "^8.2.0",
+    "ed25519-hd-key": "^1.2.0",
+    "inquirer": "^7.3.3",
+    "mz": "^2.7.0",
+    "path": "^0.12.7",
+    "superstruct": "^0.8.0",
+    "tweetnacl": "^1.0.3"
+  }
+}

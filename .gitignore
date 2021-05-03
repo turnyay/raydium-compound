@@ -70,6 +70,9 @@ typings/
 
 # dotenv environment variables file
 .env
+*.env.oxyray
+*.env.mediausdc
+*.env.mediausdc.chrome
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)
