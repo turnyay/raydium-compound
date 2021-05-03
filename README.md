@@ -2,13 +2,13 @@
 Script to compound Raydium Fusion pools
 
 # Warning
-This software is unaudited - use at your own risk.
+This software is unaudited - use at your own risk.\
 Warning: This script will use *all* of the funds in the pool accounts to compound
 
 # Prerequisites
-You must have SOL in your wallet for tx costs.
-You must have funds deposited to one of Raydium.io's Fusion Pools.
-To do this:
+You must have SOL in your wallet for tx costs.\
+You must have funds deposited to one of Raydium.io's Fusion Pools.\
+To do this:\
 - go to sollet.io and save the seed phrase in a safe place
 - obtain equal amount of the pool tokens, ie 100$ of RAY and 100$ of OXY
 - go to raydium.io and in the app click "Liquidity", then "Connect" your wallet
@@ -55,4 +55,23 @@ npm run oxy-ray
 or
 ```
 npm run media-usdc
+```
+
+
+# Setting up CRON job
+Get path-to-node:
+```
+whereis node
+```
+Edit cron file
+```
+crontab -e
+```
+Save this line below to compound OXY-RAY once every hour:
+```
+0 * * * * cd <full-path-to-deploy-directory> && cp ./.env.oxyray .env && <path-to-node> --experimental-modules --es-module-specifier-resolution=node <full-path-to-deploy-directory>/src/compound.js 2>&1 | /usr/bin/logger -t oxy-ray
+```
+Verify running (after 1 hr passes)
+```
+tailf /var/log/syslog -n 3000 | grep oxy-ray
 ```
