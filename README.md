@@ -36,6 +36,7 @@ cp .env.oxyray.example .env.oxyray
 
 3. Fill in missing 4 accounts in the .env.<pool>
 - Click "Harvest" with sollet, when the popup appears, copy and paste accounts by #:
+- This is manual for now - hoping to automate soon
 ```
 USER_INFO_ACCOUNT - Account #3
 USER_LP_TOKEN_ACCOUNT - Account #5
