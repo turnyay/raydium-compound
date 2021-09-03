@@ -72,6 +72,11 @@ typings/
 .env
 *.env.oxyray
 *.env.mediausdc
+*.env.mngousdc
+*.env.atlasray
+*.env.atlasusdc
+*.env.polisray
+*.env.polisusdc
 *.env.mediausdc.chrome
 .env.test
 
