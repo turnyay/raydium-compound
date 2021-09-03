@@ -75,9 +75,9 @@ crontab -e
 ```
 Save this line below to compound OXY-RAY once every hour:
 ```
-0 * * * * cd <full-path-to-deploy-directory> && cp ./.env.oxyray .env && <path-to-node> --experimental-modules --es-module-specifier-resolution=node <full-path-to-deploy-directory>/src/compound.js 2>&1 | /usr/bin/logger -t oxy-ray
+0 * * * * cd <full-path-to-deploy-directory> && cp ./.env.atlasray .env && <path-to-node> --experimental-modules --es-module-specifier-resolution=node <full-path-to-deploy-directory>/src/compound.js 2>&1 | /usr/bin/logger -t atlas-ray
 ```
 Verify running (after 1 hr passes)
 ```
-tailf /var/log/syslog -n 3000 | grep oxy-ray
+tailf /var/log/syslog -n 3000 | grep atlas-ray
 ```
