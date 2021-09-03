@@ -4,8 +4,10 @@
   "description": "Script to Compound Raydium Fusion Pools",
   "main": "compound.js",
   "scripts": {
-    "oxy-ray": "cp ./.env.oxyray .env && node --experimental-modules --es-module-specifier-resolution=node src/compound.js",
-    "media-usdc": "cp ./.env.mediausdc .env && node --experimental-modules --es-module-specifier-resolution=node src/compound.js"
+    "atlas-ray": "cp ./.env.atlasray .env && node --experimental-modules --es-module-specifier-resolution=node src/compound.js",
+    "atlas-usdc": "cp ./.env.atlasusdc .env && node --experimental-modules --es-module-specifier-resolution=node src/compound.js",
+    "polis-ray": "cp ./.env.polisray .env && node --experimental-modules --es-module-specifier-resolution=node src/compound.js",
+    "polis-usdc": "cp ./.env.polisusdc .env && node --experimental-modules --es-module-specifier-resolution=node src/compound.js"
   },
   "type": "module",
   "author": "",

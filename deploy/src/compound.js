@@ -81,6 +81,9 @@ export async function harvest() {
 
 export async function deposit(amount) {
 
+    let tokenAcc = (process.env.USER_RAY_TOKEN_ACCOUNT) ? new PublicKey(process.env.USER_RAY_TOKEN_ACCOUNT) :
+                    new PublicKey(process.env.USER_PC_TOKEN_ACCOUNT);
+
     const instruction = new TransactionInstruction({
         keys: [
                 { pubkey: new PublicKey(process.env.POOL_ID), isSigner: false, isWritable: true },
@@ -89,7 +92,7 @@ export async function deposit(amount) {
                 { pubkey: compoundAccount.publicKey, isSigner: true, isWritable: true },
                 { pubkey: new PublicKey(process.env.USER_LP_TOKEN_ACCOUNT), isSigner: false, isWritable: true },
                 { pubkey: new PublicKey(process.env.POOL_LP_TOKEN_ACCOUNT), isSigner: false, isWritable: true },
-                { pubkey: new PublicKey(process.env.USER_PC_TOKEN_ACCOUNT), isSigner: false, isWritable: true },
+                { pubkey: tokenAcc, isSigner: false, isWritable: true },
                 { pubkey: new PublicKey(process.env.POOL_REWARD_TOKEN_ACCOUNT_A), isSigner: false, isWritable: true },
                 { pubkey: SYSVAR_CLOCK_PUBKEY, isSigner: false, isWritable: true },
                 { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: true },
@@ -110,7 +113,7 @@ export async function deposit(amount) {
 }
 
 export async function balanceFunds() {
-    // Get token A balance (COIN ie OXY/MEDA)
+    // Get token A balance (COIN ie ATLAS/POLIS)
     let balanceCoin = await connection.getTokenAccountBalance(new PublicKey(process.env.USER_COIN_TOKEN_ACCOUNT));
     let balanceCoinBig = new BigNumber(parseInt(balanceCoin.value.amount));
 
@@ -119,12 +122,12 @@ export async function balanceFunds() {
 
     let coinAmountFromPc = coinPcRatio.multipliedBy(new BigNumber(balancePC.value.amount));
 
-    console.log("amount of COIN (OXY/MEDIA) that matches PC(RAY/USDC):", coinAmountFromPc.toFixed(0));
+    console.log("amount of COIN (ATLAS/POLIS) that matches PC(RAY/USDC):", coinAmountFromPc.toFixed(0));
 
     let fromAmountCoinBig = balanceCoinBig.minus(coinAmountFromPc).dividedBy(new BigNumber(2));
     let fromAmountCoin = fromAmountCoinBig.toFixed(0);
 
-    console.log('swapping COIN (OXY/MEDIA) amount:', fromAmountCoin);
+    console.log('swapping COIN (ATLAS/POLIS) amount:', fromAmountCoin);
 
     let minToAmountPCBig = fromAmountCoinBig.dividedBy(coinPcRatio);
     let minToAmountPC = minToAmountPCBig.toFixed(0);
@@ -138,7 +141,7 @@ export async function balanceFunds() {
         preflightCommitment: null,
     }, serumDEXProgramId);
 
-    console.log('Converting ', fromAmountCoin, "COIN (OXY/MEDIA) to", minToAmountPC, "PC(RAY/USDC)");
+    console.log('Converting ', fromAmountCoin*0.99, "COIN (ATLAS/POLIS) to >", minToAmountPC*0.9, "PC(RAY/USDC)");
 
     const instruction = new TransactionInstruction({
         keys: [
@@ -255,7 +258,6 @@ async function main() {
         await sleep(2000);
 
         let lpTokens = await connection.getTokenAccountBalance(new PublicKey(process.env.USER_LP_TOKEN_ACCOUNT));
-
         await deposit(lpTokens.value.amount);
 
     } catch (err) {
